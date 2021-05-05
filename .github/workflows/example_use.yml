@@ -33,4 +33,4 @@ jobs:
           repository: dwhswenson/conda-rc-check
           event-type: test-with-openmm-rc
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-        if: ${{ steps.check.outputs.hasrc == "True" }}
+        if: ${{ steps.check.outputs.hasrc == 'True' }}
