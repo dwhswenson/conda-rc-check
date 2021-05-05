@@ -1,6 +1,6 @@
+name: Triggered Workflow
 on:
   workflow_dispatch:
-    types: ['test-with-openmm-rc']
 
 jobs:
   rc-test:
