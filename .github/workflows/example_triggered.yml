@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+    types: [test-with-openmm-rc]
+
+jobs:
+  rc-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo "Here's where I'd run my tests"
+

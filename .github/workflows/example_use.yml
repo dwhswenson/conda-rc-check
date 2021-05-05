@@ -27,3 +27,10 @@ jobs:
           ndays: 30
           tags: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
+      - uses: peter-evans/repository-dispatch
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: dwhswenson/conda-rc-check
+          event-type: test-with-openmm-rc
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        if: ${{ steps.check.outputs.hasrc == "True" }}
