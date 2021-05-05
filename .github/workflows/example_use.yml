@@ -19,7 +19,7 @@ jobs:
     name: "Check for an OpenMM RC"
     steps:
       - uses: actions/checkout@v2
-      - uses: ./action
+      - uses: ./
         id: check
         with:
           channel: conda-forge
