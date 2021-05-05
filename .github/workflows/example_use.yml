@@ -27,7 +27,7 @@ jobs:
           ndays: 30
           tags: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
-      - uses: peter-evans/repository-dispatch
+      - uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.DISPATCH_TOKEN }}
           repository: dwhswenson/conda-rc-check
