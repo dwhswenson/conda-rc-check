@@ -1,4 +1,7 @@
 on:
+  # This is used in testing here, so we check against PRs and pushes, as
+  # well as testing every day. In a real use case, you'd probably only use
+  # the `schedule` type, and possibly not every day.
   pull_request:
     branches:
       - main
@@ -7,7 +10,7 @@ on:
       - main
 
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 * * *"
 
 defaults:
   run:
@@ -25,7 +28,7 @@ jobs:
           channel: conda-forge
           package: openmm
           ndays: 30
-          tags: 'main openmm_rc'
+          labels: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
       - uses: benc-uk/workflow-dispatch@v1
         with:
