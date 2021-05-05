@@ -1,0 +1,30 @@
+name: "Check conda for release candidates"
+description: |
+  Identify whether a recent release candidate has been published on conda.
+inputs:
+  channel:
+    description: Channel where the package is found
+    required: true
+    default: 'conda-forge'
+  package:
+    description: Package name
+    required: true
+  ndays:
+    description: return if RC released within this many days
+    required: true
+    default: 7
+  tags:
+    description: space-separated list of tag names
+    required: true
+    default: main
+outputs:
+    has_rc:
+      description: Whether there is a release candidate for this package
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.channel }}
+    - ${{ inputs.package }}
+    - ${{ inputs.ndays }}
+    - ${{ inputs.tags }}
