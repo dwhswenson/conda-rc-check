@@ -1,6 +1,9 @@
 name: "Check conda for release candidates"
 description: |
   Identify whether a recent release candidate has been published on conda.
+branding:
+  icon: package
+  color: orange
 inputs:
   channel:
     description: Channel where the package is found.
