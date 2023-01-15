@@ -33,6 +33,12 @@ jobs:
     outputs:
       hasrc: ${{ steps.check.outputs.hasrc }}
 
+  check-output:
+    needs: check_rc
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.check_rc.hasrc }}
+
   run_rc_tests:
     needs: check_rc
     uses: ./.github/workflows/example_triggered.yml
