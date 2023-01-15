@@ -37,9 +37,9 @@ jobs:
     needs: check_rc
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.check_rc.hasrc }}
+      - run: echo ${{ needs.check_rc.outputs.hasrc }}
 
   run_rc_tests:
     needs: check_rc
     uses: ./.github/workflows/example_triggered.yml
-    if: ${{ needs.check_rc.hasrc == 'True' }}
+    if: ${{ needs.check_rc.outputs.hasrc == 'True' }}
