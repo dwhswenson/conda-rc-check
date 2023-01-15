@@ -34,6 +34,6 @@ jobs:
       hasrc: ${{ steps.check.outputs.hasrc }}
 
   run_rc_tests:
-    needs: check-rc
+    needs: check_rc
     uses: ./.github/workflows/example_triggered.yml
     if: ${{ needs.check_rc.hasrc == 'True' }}
