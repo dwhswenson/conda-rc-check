@@ -31,7 +31,6 @@ jobs:
           labels: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
   run_rc_tests:
-    runs-on: ubuntu-latest
     needs: check-rc
     uses: ./.github/workflows/example_triggered.yml
     if: ${{ jobs.check_rc.steps.check.outputs.hasrc == 'True' }}
