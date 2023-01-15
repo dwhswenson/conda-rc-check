@@ -17,7 +17,7 @@ defaults:
     shell: bash -l {0}
 
 jobs:
-  check-rc:
+  check_rc:
     runs-on: ubuntu-latest
     name: "Check for an OpenMM RC"
     steps:
@@ -29,9 +29,14 @@ jobs:
           package: openmm
           ndays: 30
           labels: 'main openmm_rc'
+      # to use the output within the same job (different step)
       - run: echo ${{ steps.check.outputs.hasrc }}
-      - uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: Triggered Workflow
-          token: ${{ secrets.DISPATCH_TOKEN }}
-        if: ${{ steps.check.outputs.hasrc == 'True' }}
+    # to share output between jobs, use the outputs keyword
+    outputs:
+      hasrc: ${{ steps.check.outputs.hasrc }}
+
+  # run this job only if there's an RC
+  run_rc_tests:
+    needs: check_rc
+    uses: ./.github/workflows/example_triggered.yml
+    if: ${{ needs.check_rc.outputs.hasrc == 'True' }}
