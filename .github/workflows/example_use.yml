@@ -30,7 +30,10 @@ jobs:
           ndays: 30
           labels: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
+    outputs:
+      hasrc: ${{ steps.check.outputs.hasrc }}
+
   run_rc_tests:
     needs: check-rc
     uses: ./.github/workflows/example_triggered.yml
-    if: ${{ jobs.check_rc.steps.check.outputs.hasrc == 'True' }}
+    if: ${{ needs.check_rc.hasrc == 'True' }}
