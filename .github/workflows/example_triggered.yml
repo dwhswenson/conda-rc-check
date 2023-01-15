@@ -1,6 +1,6 @@
 name: Triggered Workflow
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   rc-test:
