@@ -30,8 +30,5 @@ jobs:
           ndays: 30
           labels: 'main openmm_rc'
       - run: echo ${{ steps.check.outputs.hasrc }}
-      - uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: Triggered Workflow
-          token: ${{ secrets.DISPATCH_TOKEN }}
+      - uses: ./.github/workflows/example_triggered.yml@main
         if: ${{ steps.check.outputs.hasrc == 'True' }}
