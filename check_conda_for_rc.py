@@ -13,7 +13,7 @@ def parse_file_row(tr):
     date = dateutil.parser.parse(string_date)
     a = list(tds[3].find_all('a'))[1]
     version = packaging.version.Version(a['href'].split('/')[3])
-    conda_tag = tds[7].a.string.strip()
+    conda_tag = tds[6].a.string.strip()
     return version, date, conda_tag
 
 def get_page(package, num):
